@@ -1,24 +1,25 @@
 import { Component } from "react";
+import {FcSearch } from 'react-icons/fc';
 import style from './Searchbar.module.css'
 
 
 class Searchbar extends Component{
   state = {
-   seachQuery: '',
+   searchQuery: '',
  }
 
   handleNameChange = (e) => {
-    this.setState({ seachQuery: e.currentTarget.value.toLowerCase() });
+    this.setState({ searchQuery: e.currentTarget.value.toLowerCase() });
   }
 //  при сабмите формы вызываю метод из App и передаю ему значние state из этого класса 
-  // значение this.state.seachQuery eпередается параметром в метод handleSearchbarSubmit
+  // значение this.state.searchQuery eпередается параметром в метод handleSearchbarSubmit
   handleSubmit = e => {    
     e.preventDefault();
-    if (this.state.seachQuery.trim() === '') {
+    if (this.state.searchQuery.trim() === '') {
       return;
     }
-    this.props.onSubmit(this.state.seachQuery);
-    this.setState({ seachQuery : ""})    
+    this.props.onSubmit(this.state.searchQuery);
+    this.setState({ searchQuery : ""})    
   }
 
   render() {
@@ -26,7 +27,9 @@ class Searchbar extends Component{
       <header className={style.searchbar}>
         <form className={style.form} onSubmit={this.handleSubmit}>
           <button type="submit" className={style.button}>
-            <span className={style.buttonLabel}>Search</span>
+            <span className={style.buttonLabel}>
+              <FcSearch className={style.svg}/>
+            </span>
           </button>
 
           <input
@@ -35,7 +38,7 @@ class Searchbar extends Component{
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value={this.state.seachQuery}
+            value={this.state.searchQuery}
             onChange={this.handleNameChange}
           />
         </form>
@@ -45,3 +48,4 @@ class Searchbar extends Component{
 }
 
 export default Searchbar;
+

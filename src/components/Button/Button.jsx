@@ -4,9 +4,11 @@ class Button extends Component {
 
   render() {
      return (
-    <button className={style.button} onClick={this.props.onClickButton}>
-       Load more
-    </button>
+       <div className={style.buttonBox}>
+          <button className={style.button} onClick={this.props.onClickButton}>
+            Load more
+          </button>
+      </div>
   )
   }
  
